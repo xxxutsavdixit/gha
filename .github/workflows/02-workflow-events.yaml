@@ -1,13 +1,18 @@
 name: 02 - Workflow Events
 on: 
-    push:
-    pull_request:
+    workflow_dispatch:  
     schedule:
         - cron: '0 0 * * *'  
-    workflow_dispatch:     
+       
 jobs:
     echo:
         runs-on: ubuntu-latest
         steps: 
+
+            - name: Checkout repository
+              uses: actions/checkout@v4
+              
             - name: Show the trigger
-              run: echo ${{github.event_name}}
+              run: |
+                    echo ${{github.event_name}}
+                    cat README.md
