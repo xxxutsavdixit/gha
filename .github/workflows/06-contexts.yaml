@@ -21,13 +21,15 @@ jobs:
                    echo  "Workflow: ${{github.workflow}}"
                    echo "Run ID: ${{github.run_id}}"
                    echo "Run number: ${{github.run_number}}"
+            - name: Checkout repository
+              uses: actions/checkout@v4       
             - name: Retrieve Variable
               if: ${{github.event.inputs.debug == 'true'}}
               run: |
                    ls
                    echo "Changing value to 0"
-                   #sed -i 's/$boolean/0/' app/index.html
-                   #cat app/index.html
+                   sed -i 's/$boolean/0/' app/index.html
+                   cat app/index.html
              
 
 
