@@ -4,10 +4,10 @@ on:
     push:
     workflow_dispatch:
         inputs:
-             name: debug
+            debug:
              description: "Enable debug mode"
              type: boolean
-             default: false           
+             default: false        
 jobs:
     echo-data:
         runs-on: ubuntu-latest
