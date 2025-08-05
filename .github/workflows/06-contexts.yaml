@@ -6,9 +6,15 @@ on:
             debug:
              description: "Enable debug mode"
              type: boolean
-             default: false        
+             default: false      
+env:
+  MY_WORKFLOW_VAR: 'workflow'
+  MY_OVERWRITTEN_VAR: 'workflow'
 jobs:
     echo-data:
+        env:
+          MY_JOB_VAR: 'job'
+          MY_OVERWRITTEN_VAR: 'job'
         runs-on: ubuntu-latest
         steps:
             - name: Display Information
@@ -29,6 +35,14 @@ jobs:
                    echo "Changing value to 0"
                    sed -i 's/$boolean/0/' app/index.html
                    cat app/index.html
+
+            - name: Print Env Variables
+              env:
+                MY_OVERWRITTEN_VAR: 'step'
+              run: |
+                  echo "Workflow env: ${{ vars.MY_WORKFLOW_VAR}}"
+                  echo "Overwritten env: ${{ vars.MY_OVERWRITTEN_VAR }}"
+
              
 
 
