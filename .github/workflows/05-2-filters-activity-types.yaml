@@ -1,14 +1,16 @@
-name: 05 - 2 - Event Filters and Activity Type
+name: 05 - 1 - Event Filters and Activity
 on:
     pull_request:
-        types: [closed]
-        branches: main    
+     types:
+         - opened 
+         - synchronize
+     branches:
+        - main
+    workflow_dispatch:
 jobs:
-    echo:
+     echo:
         runs-on: ubunut-latest
-        steps: 
-            - name: PR closed
-              run: echo "Running whenever a PR is closed"
-
-              
-    
+        steps:
+             - name: "PR raised"
+               run: |
+                   echo "Running whenever a PR is opened or synchronized AND base branch is main"
