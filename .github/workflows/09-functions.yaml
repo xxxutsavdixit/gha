@@ -16,7 +16,17 @@ jobs:
        steps:
            - name:    Print PR title
              run: |
-                   echo "This is the PR ${{github.events.pull_request}}"
+                   echo "This is the PR ${{ github.event.pull_request.title}}"
+
+           - name: Print PR labels
+             run: |
+                  cat <<< EOF
+                  "${{toJson(github.event.pull_request.labels)}}""
+                  EOF
+           - name: Bug step
+             if: ${{ failure() && !cancelled()}}
+             run: |
+                  echo "I am a bug fix"         
            - name: new steps
              run:
                  sleep 30
