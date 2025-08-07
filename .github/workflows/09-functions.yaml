@@ -2,15 +2,23 @@ name:  09 - Using Functions
 on:
     pull_request:
     workflow_dispatch:
+      inputs:
+        debug:
+           type: choice
+           options:
+               - dev
+               - uat
+               - stag
+
 jobs:
     echo1:
        runs-on: ubuntu-latest
        steps:
            - name: Failing step
              run: |
-                  exit 1
+                  exit 0
            - name: I will be skipped   
-             if: ${{ success()}}
+             if: ${{ success() && inputs.debug == 'dev'}}
              run: |
                   echo "I will print if previous steps succeed."                  
            - name: I will execute
