@@ -14,6 +14,9 @@ jobs:
     echo1:
        runs-on: ubuntu-latest
        steps:
+           - name: new steps
+             run:
+                 sleep 30
            - name: Failing step
              run: |
                   exit 0
@@ -32,4 +35,4 @@ jobs:
            - name: I will execute when cancelled  
              if: ${{ cancelled()}}
              run: |
-                   echo  "I will execute when cancelled "          
+                   echo  "I will execute when cancelled"          
