@@ -5,9 +5,7 @@ on:
         inputs:
             debug:
                 type: boolean
-                default: false
-        branches:
-             - main        
+                default: false    
 jobs:
     echo:
         runs-on: ubuntu-latest
@@ -21,7 +19,7 @@ jobs:
                   echo "Runner OS: $RUNNER_OS"
 
             - name: '[debug] Print when triggered from main'
-              if: ${{ inputs.debug && github.ref ==  "refs/heads/main" }}
+              if: ${{ inputs.debug && github.ref ==  'refs/heads/main' }}
               run: echo "I was triggered from main"
             
             - name: Greeting
