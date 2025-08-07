@@ -4,7 +4,7 @@ on:
     workflow_dispatch:
 jobs:
     echo1:
-       runs-on: ubunut-latest
+       runs-on: ubuntu-latest
        steps:
            - name: Failing step
              run: |
@@ -25,4 +25,3 @@ jobs:
              if: ${{ cancelled()}}
              run: |
                    echo  "I will execute when cancelled "          
-                   
